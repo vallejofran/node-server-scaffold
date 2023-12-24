@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 
-exports.mongoConnection = async() => {
+exports.mongoConnection = () => {
     try {
-        await mongoose.connect( process.env.MONGODB_CNN, {
+        mongoose.connect( process.env.MONGODB_CNN, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
