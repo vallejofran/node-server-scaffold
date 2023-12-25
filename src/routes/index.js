@@ -5,7 +5,7 @@ const router = express.Router();
 const paths = {
   "/api/example": require("./example"),
   "/api/user-sequelize-example": require("./user-sequelize-example"),
-  "/api/user-mongo-example": require("./user-mongo-example")
+  "/api/user-mongo-example": require("./user-mongo-example"),
   "/api/generic-crud": require("./generic-rourtes-example"),
 };
 

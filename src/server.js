@@ -5,6 +5,11 @@ const fileUpload = require("express-fileupload");
 const mySqlConnection = require("./database/mysql-conn");
 const sequelizeConnection = require("./database/sequelize-conn");
 const { mongoConnection } = require("./database/mongo-conn");
+const {
+  MongoConnError,
+  SequelizeConnError,
+  MySqlConnError,
+} = require("./class/error-factory");
 
 class Server {
   constructor() {
@@ -21,13 +26,24 @@ class Server {
     this.routes();
   }
 
-  conectarDB() {
+  async conectarDB() {
     try {
-      // await mySqlConnection.connect();
+      await mySqlConnection.connect();
       // await sequelizeConnection.connect();
-      mongoConnection();
+      // await mongoConnection();
     } catch (error) {
-      console.error("Error en la conexion a BBDD _>".brightRed, error);
+      if (error instanceof MongoConnError)
+        console.error("Error en la conexion a MongoDB _>".brightRed, error);
+      if (error instanceof SequelizeConnError)
+        console.error(
+          "Error en la conexion a BBDD con Sequelize _>".brightRed,
+          error
+        );
+      if (error instanceof MySqlConnError)
+        console.error(
+          "Error en la conexion a BBDD con MySql _>".brightRed,
+          error
+        );
     }
   }
 
