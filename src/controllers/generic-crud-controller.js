@@ -1,6 +1,6 @@
-const Controller = require("./controller");
-const models = require("../models");
-const CRUDService = require("../services/crud-service");
+import Controller from "./controller.js";
+import models from "../models/index.js";
+import CRUDService from "../services/crud-service.js";
 
 function newCRUDService(model) {
   function toPascalCase(str) {
@@ -102,4 +102,4 @@ controller.deleteById = async function (req, res) {
   });
 };
 
-module.exports = controller;
+export default controller;

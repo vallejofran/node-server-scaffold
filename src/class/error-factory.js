@@ -3,6 +3,7 @@ const handleErrorFactory = function (name) {
     constructor(message) {
       super(message);
       this.name = name;
+      // this.stack = ''
     }
   };
 };
@@ -11,8 +12,4 @@ const MongoConnError = handleErrorFactory("MongoConnError");
 const SequelizeConnError = handleErrorFactory("SequelizeConnError");
 const MySqlConnError = handleErrorFactory("MySqlConnError");
 
-module.exports = {
-  MongoConnError,
-  SequelizeConnError,
-  MySqlConnError,
-};
+export { MongoConnError, SequelizeConnError, MySqlConnError };

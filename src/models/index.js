@@ -1,5 +1,9 @@
+import mongoModel from "./user-mongo-example.js";
+import sequelizeModel from "./user-sequelize-example.js";
+
 const models = {
-  UsuarioSchema: require("./user-mongo-example"),
+  UsuarioSchema: mongoModel,
+  UserExample: sequelizeModel,
 };
 
-module.exports = models;
+export default models;

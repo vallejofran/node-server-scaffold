@@ -1,11 +1,14 @@
-const { Router } = require('express');
+import { Router } from "express";
 const router = Router();
 
-const {createUser, getUsers, getUserById} = require('../controllers/user-mogno-example');
+import {
+  createUser,
+  getUsers,
+  getUserById,
+} from "../controllers/user-mogno-example.js";
 
-router.post('/create-user', createUser)
-router.get('/', getUsers)
-router.get('/:id', getUserById)
+router.post("/create-user", createUser);
+router.get("/", getUsers);
+router.get("/:id", getUserById);
 
-
-module.exports = router;
+export default router;

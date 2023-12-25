@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
-const config = require("../config/db-config");
-const { SequelizeConnError } = require("../class/error-factory");
+import Sequelize from "sequelize";
+import { config } from "../config/db-config.js";
+import { SequelizeConnError } from "../class/error-factory.js";
 class SequelizeConn {
   constructor() {
     if (process.env.NODE_ENV === "production")
@@ -55,4 +55,4 @@ class SequelizeConn {
   }
 }
 
-module.exports = new SequelizeConn();
+export default new SequelizeConn();

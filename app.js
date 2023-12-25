@@ -1,7 +1,8 @@
-require('dotenv').config();
-const colors = require('colors');
+import dotenv from "dotenv";
+dotenv.config();
+import colors from "colors";
 
-const Server = require('./src/server');
+import Server from "./src/server.js";
 
 const server = new Server();
 server.listen();

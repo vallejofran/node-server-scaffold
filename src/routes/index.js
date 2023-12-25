@@ -1,16 +1,21 @@
 // routes.js
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
+
+import exampleRoutes from "./example.js";
+import sequeliezeRoutes from "./user-sequelize-example.js";
+import mongoRoutes from "./user-mongo-example.js";
+import genericRoutes from "./generic-rourtes-example.js";
 
 const paths = {
-  "/api/example": require("./example"),
-  "/api/user-sequelize-example": require("./user-sequelize-example"),
-  "/api/user-mongo-example": require("./user-mongo-example"),
-  "/api/generic-crud": require("./generic-rourtes-example"),
+  "/api/example": exampleRoutes,
+  "/api/user-sequelize-example": sequeliezeRoutes,
+  "/api/user-mongo-example": mongoRoutes,
+  "/api/generic-crud": genericRoutes,
 };
 
 for (const [path, middleware] of Object.entries(paths)) {
   router.use(path, middleware);
 }
 
-module.exports = router;
+export default router;

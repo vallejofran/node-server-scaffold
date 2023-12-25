@@ -1,17 +1,17 @@
-const mysql = require("mysql");
-const config = require("../config/db-config");
-const { MySqlConnError } = require("../class/error-factory");
+import { createConnection } from "mysql";
+import { config } from "../config/db-config.js";
+import {MySqlConnError} from "../class/error-factory.js";
 class MysqlConnection {
   constructor() {
     if (process.env.NODE_ENV === "production") {
-      this.connection = mysql.createConnection({
+      this.connection = createConnection({
         host: config.production.host,
         user: config.production.username,
         password: config.production.password,
         database: config.production.database,
       });
     } else {
-      this.connection = mysql.createConnection({
+      this.connection = createConnection({
         host: config.development.host,
         user: config.development.username,
         password: config.development.password,
@@ -57,4 +57,4 @@ class MysqlConnection {
   }
 }
 
-module.exports = new MysqlConnection();
+export default new MysqlConnection();

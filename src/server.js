@@ -1,15 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const fileUpload = require("express-fileupload");
+import express, { json } from "express";
+import cors from "cors";
+import fileUpload from "express-fileupload";
 
-const mySqlConnection = require("./database/mysql-conn");
-const sequelizeConnection = require("./database/sequelize-conn");
-const { mongoConnection } = require("./database/mongo-conn");
-const {
+import mySqlConnection from "./database/mysql-conn.js";
+import sequelizeConnection from "./database/sequelize-conn.js";
+import mongoConnection from "./database/mongo-conn.js";
+import {
   MongoConnError,
   SequelizeConnError,
   MySqlConnError,
-} = require("./class/error-factory");
+} from "./class/error-factory.js";
+import routes from "./routes/index.js";
 
 class Server {
   constructor() {
@@ -28,22 +29,28 @@ class Server {
 
   async conectarDB() {
     try {
-      await mySqlConnection.connect();
+      // await mySqlConnection.connect();
       // await sequelizeConnection.connect();
-      // await mongoConnection();
+      mongoConnection();
     } catch (error) {
-      if (error instanceof MongoConnError)
+      if (error instanceof MongoConnError) {
         console.error("Error en la conexion a MongoDB _>".brightRed, error);
-      if (error instanceof SequelizeConnError)
+        process.exit(0);
+      }
+      if (error instanceof SequelizeConnError) {
         console.error(
           "Error en la conexion a BBDD con Sequelize _>".brightRed,
           error
         );
-      if (error instanceof MySqlConnError)
+        process.exit(0);
+      }
+      if (error instanceof MySqlConnError) {
         console.error(
           "Error en la conexion a BBDD con MySql _>".brightRed,
           error
         );
+        process.exit(0);
+      }
     }
   }
 
@@ -52,9 +59,9 @@ class Server {
     this.app.use(cors());
 
     // Lectura y parseo del body
-    this.app.use(express.json());
+    this.app.use(json());
 
-    // Directorio PúblicoF
+    // Directorio Público
     // this.app.use( express.static('public') );
 
     // Fileupload - Carga de archivos
@@ -68,16 +75,14 @@ class Server {
   }
 
   routes() {
-    this.app.use("/", require("./routes"));
+    this.app.use("/", routes);
   }
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log();
-      console.log("-------------------------------------------");
       console.log(`Servidor corriendo en puerto ${this.port}`.brightGreen);
     });
   }
 }
 
-module.exports = Server;
+export default Server;

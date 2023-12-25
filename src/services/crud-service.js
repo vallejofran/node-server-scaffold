@@ -28,4 +28,4 @@ class CRUDService {
   }
 }
 
-module.exports = CRUDService;
+export default CRUDService;

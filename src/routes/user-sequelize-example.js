@@ -1,11 +1,12 @@
-const { Router } = require('express');
+import { Router } from "express";
 const router = Router();
 
-const {getUsers, getUserById} = require('../controllers/user-sequelize-example');
+import {
+  getUsers,
+  getUserById,
+} from "../controllers/user-sequelize-example.js";
 
+router.get("/", getUsers);
+router.get("/:id", getUserById);
 
-router.get('/', getUsers)
-router.get('/:id', getUserById)
-
-
-module.exports = router;
+export default router;
