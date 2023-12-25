@@ -1,7 +1,6 @@
-import pkg from 'mongoose';
-const { Schema, model } = pkg;
+import mongoose from 'mongoose';
 
-const UsuarioSchema = Schema({
+const UsuarioSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: [true, "El nombre es obligatorio"],
@@ -36,4 +35,4 @@ UsuarioSchema.methods.toJSON = function () {
   return usuario;
 };
 
-export default model("Usuario", UsuarioSchema);
+export default mongoose.model("Usuario", UsuarioSchema);

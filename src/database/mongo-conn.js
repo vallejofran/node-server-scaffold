@@ -3,7 +3,7 @@ import { MongoConnError } from "../class/error-factory.js";
 
 const mongoConnection = () => {
   try {
-    mongoose.createConnection(process.env.MONGODB_CNN, {
+    mongoose.connect(process.env.MONGODB_CNN, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
