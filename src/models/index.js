@@ -1,7 +1,9 @@
-import UsuarioSchema from "./user-mongo-example.js";
+import UsuarioMongoSchema from "./user-mongo-example.js";
+import UsuarioSequelizeSchema from "./user-sequelize-example.js";
 
 const models = {
-  UsuarioSchema,
+  UsuarioMongoSchema,
+  UsuarioSequelizeSchema,
 };
 
 export default models;

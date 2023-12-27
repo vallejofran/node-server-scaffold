@@ -1,4 +1,6 @@
-// Data base params
+import dotenv from "dotenv";
+dotenv.config();
+
 export const config = {
   development: {
     username: process.env.DB_USERNAME_DEV,

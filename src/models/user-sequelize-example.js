@@ -1,85 +1,46 @@
-import { DataTypes } from "sequelize";
-import sequelizeConn from "../database/sequelize-conn.js";
+import { Sequelize, DataTypes } from "sequelize";
+import sequelizeConn from "../database/sequelize-model-conn.js";
 
-const UserExample = sequelizeConn.connection.define(
-  "crwmembr",
+const UserExample = sequelizeConn.define(
+  "UserExample",
   {
-    id_CRWMEMBR: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
-      // field: 'id_CRWMEMBR', // Nombre personalizado para la columna de clave primaria
     },
-    CRE_PRIMKEY: {
-      type: DataTypes.STRING,
+    firstname: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    OCREW: {
-      type: DataTypes.STRING,
+    lastname: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
-    LASTNAME: {
-      type: DataTypes.STRING,
+    email: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
-    FIRSTNAME: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    MIDDLENAME: {
-      type: DataTypes.STRING,
+    password: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
-    COMPANYNBR: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    PASSWORD: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    AUX_PASSWORD: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    BLOCK: {
+    active: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
-    ATTEMPTS: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    EMAIL: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    ACTIVE: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-    },
-    DNI: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    LASTNAME2: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    EXTERNAL: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    remember_token: {
-      type: DataTypes.STRING,
+    dni: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
   },
   {
-    freezeTableName: true,
+    // freezeTableName: true,
+    tableName: "user_example",
     timestamps: false,
   }
 );
 
+await UserExample.sync();
 export default UserExample;

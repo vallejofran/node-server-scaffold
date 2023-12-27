@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const UsuarioSchema = new mongoose.Schema({
+const UsuarioMongoSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: [true, "El nombre es obligatorio"],
@@ -29,10 +29,10 @@ const UsuarioSchema = new mongoose.Schema({
   },
 });
 
-UsuarioSchema.methods.toJSON = function () {
+UsuarioMongoSchema.methods.toJSON = function () {
   const { __v, password, _id, ...usuario } = this.toObject();
   usuario.uid = _id;
   return usuario;
 };
 
-export default mongoose.model("Usuario", UsuarioSchema);
+export default mongoose.model("Usuario", UsuarioMongoSchema);

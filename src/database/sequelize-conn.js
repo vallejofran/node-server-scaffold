@@ -1,4 +1,5 @@
-import Sequelize from "sequelize";
+import { Sequelize } from "sequelize";
+
 import { config } from "../config/db-config.js";
 import { SequelizeConnError } from "../class/error-factory.js";
 class SequelizeConn {
@@ -19,7 +20,7 @@ class SequelizeConn {
           },
         }
       );
-    else
+    else {
       this.connection = new Sequelize(
         config.development.database,
         config.development.username,
@@ -35,6 +36,7 @@ class SequelizeConn {
           },
         }
       );
+    }
   }
 
   async connect() {
